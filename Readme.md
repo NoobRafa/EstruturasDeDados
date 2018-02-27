@@ -1,4 +1,4 @@
-Disciplina de Estruturas de Dados 2
+Disciplina de Estruturas de Dados 2 -@Rafael Vieira
 ->Fila de Vetor
 ->Pilha de Vetor
 ->Fila Encadeada (No)
