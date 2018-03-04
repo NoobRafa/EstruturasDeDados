@@ -1,5 +1,7 @@
 package com.estruturadedados2.aula04;
 
+import com.estruturadedados2.aula03.PilhaEncadeada;
+
 public class FilaEncadeada {
 	private int qtd;
 	private No head;
@@ -55,7 +57,7 @@ public class FilaEncadeada {
 				System.out.print(aux.getValue() + " ");
 				aux = aux.getProx();
 			}
-		}else{
+		} else {
 			System.out.println("Fila Vazia");
 		}
 	}
@@ -75,6 +77,49 @@ public class FilaEncadeada {
 			return null;
 		}
 	}
+	
+	public Object unqueuePos(int pos){
+		if (check(pos)) {
+			No aux = head;
+			
+			FilaEncadeada fila = new FilaEncadeada();
+			
+			Object value = null;
+			int cont = 0;
+			
+			while(!isEmpty()){ // Fila Real: A B C D
+							//   			 0 1 2 3
+				if (cont != pos) {
+					fila.queue(aux.getValue());
+				}else{
+					value = aux.getValue();
+				}
+				cont++;
+				aux = aux.getProx();
+				unqueue();	
+			}
+			
+			while(!fila.isEmpty()){
+				queue(fila.unqueue());
+			}
+
+			return value;
+		}else{
+			return null;
+		}
+	}
+	
+	
+	
+	private boolean check(int pos){
+		if (pos >= 0 && pos < qtd) { //4  -  0 1 2 3
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
 
 	public Object firstElement() {
 		if (!isEmpty()) {
@@ -107,6 +152,70 @@ public class FilaEncadeada {
 		}
 
 		setQtd(getQtd() + 2);
+	}
+
+	public void printElement(int pos) {
+
+		if (check(pos)) {
+
+			No aux = head;
+
+			int cont = 0;
+
+			while (aux != null) {
+				if (cont == pos) {
+					System.out.print(aux.getValue());
+					break;
+				}
+				cont++;
+				aux = aux.getProx();
+			}
+
+		} else {
+			System.out.println("Posição Inválida");
+		}
+
+	}
+	
+	public int printPos(Object element){
+		int cont = 0;
+		
+		if (!isEmpty()) {
+			
+			No aux = head;
+			
+			while (aux != null) {
+				if (aux.getValue().equals(element)) {
+					return cont;
+				}
+				cont++;
+				aux = aux.getProx();
+			}
+			
+			return -1;
+			
+		}else{
+			return -1;
+		}
+	}
+
+	public void inverterFila() {
+		if (!isEmpty()) {
+
+			PilhaEncadeada pilha = new PilhaEncadeada();
+
+			while (!isEmpty()) {
+				pilha.push(unqueue());
+			}
+
+			while (!pilha.isEmpty()) {
+				queue(pilha.pop());
+			}
+
+
+		} else {
+			System.out.println("Fila Vazia!");
+		}
 	}
 
 }
