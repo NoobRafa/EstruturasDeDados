@@ -9,10 +9,8 @@ public class UsaFilaEncadeada {
 		
 		// A - 0 B - 1  c - 2
 		f.print();
-		System.out.println("\nElemento removido: " + f.unqueuePos(2));
+		System.out.println("\nElemento removido: " + f.unqueuePos2(0));
 		f.print();
-		
-
 		
 //		System.out.println("\n"+f.unqueuePos(1));
 //		f.print();

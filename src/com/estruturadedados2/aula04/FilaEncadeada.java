@@ -109,6 +109,39 @@ public class FilaEncadeada {
 		}
 	}
 	
+	public Object unqueuePos2(int pos){
+		if (check(pos)) {
+			Object value = null;
+			No aux = head;
+			No aux2 = head;
+			
+			int cont  = 0;
+			
+			while(aux != null){
+				if (cont == pos) {
+					value = aux.getValue();
+				}
+				cont++;
+				unqueue();
+				aux = aux.getProx();
+			}
+			
+			while (aux2 != null) {
+				if (aux2.getValue() != value) {
+					queue(aux2.getValue());
+				}
+				
+				aux2 = aux2.getProx();
+			}
+			
+			
+			return value;
+		}else{
+			System.out.println("Posição Inváilda");
+			return null;
+		}
+	}
+	
 	
 	
 	private boolean check(int pos){
