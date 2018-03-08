@@ -142,6 +142,38 @@ public class FilaEncadeada {
 		}
 	}
 	
+	public Object unqueuePos3(int pos){
+		if (check(pos)) {
+			No anterior;
+			No aux = head;
+			int cont = 0;
+			Object retorno = null;
+			
+			while (cont <= pos) {
+				if (cont == pos) {
+					retorno = aux.getValue();
+					head = head.getProx();
+					qtd--;
+					break;
+				}else if(cont == pos - 1){
+					anterior = aux;
+					retorno = aux.getProx().getValue();
+					anterior.setProx(aux.getProx().getProx());
+					qtd--;
+					break;
+				}
+				cont++;
+				aux = aux.getProx();
+			}
+			
+			return retorno;
+			
+			
+		}else{
+			return null;
+		}
+	}
+	
 	
 	
 	private boolean check(int pos){
