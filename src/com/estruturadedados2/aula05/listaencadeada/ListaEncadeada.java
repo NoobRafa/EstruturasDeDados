@@ -23,8 +23,8 @@ public class ListaEncadeada {
 	public boolean isEmpty() {
 		return qtd == 0;
 	}
-	
-	public boolean checkPos(int pos){
+
+	public boolean checkPos(int pos) {
 		if (pos >= 0 && pos < qtd) {
 			return true;
 		}
@@ -39,6 +39,7 @@ public class ListaEncadeada {
 
 	public void insertLast(Object value) {
 		No novo = new No(value, tail);
+
 		No aux = head.getProx();
 
 		while (aux.getProx() != tail) {
@@ -46,7 +47,7 @@ public class ListaEncadeada {
 		}
 		aux.setProx(novo);
 		qtd++;
-		
+
 	}
 
 	public void insertAfterNode(No no, Object value) {
@@ -54,35 +55,35 @@ public class ListaEncadeada {
 			No novo = new No(value, no.getProx());
 			no.setProx(novo);
 			qtd++;
-		}else{
+		} else {
 			System.out.println("Nó inexistente ou Nó nulo.");
 		}
-		
+
 	}
-	
-	public void insertBeforeNode(No no, Object value){
-		if(no != null){
+
+	public void insertBeforeNode(No no, Object value) {
+		if (no != null) {
 			No novo;
 			No aux = head;
-			
-			while(aux.getProx() != no){
+
+			while (aux.getProx() != no) {
 				aux = aux.getProx();
 			}
-			
-			novo = new No(value, aux.getProx());
+
+			novo = new No(value, aux.getProx() /* no */);
 			aux.setProx(novo);
 			qtd++;
-		}else{
+		} else {
 			System.out.println("Nó inexistente ou Nó nulo.");
 		}
-		
+
 	}
-	
-	public void insertPos(int pos, Object value){
+
+	public void insertPos(int pos, Object value) {
 		if (checkPos(pos)) {
-			No aux  = head;
+			No aux = head;
 			No aux2 = head.getProx();
-			
+
 			for (int i = 0; i < qtd; i++) {
 				if (i == pos) {
 					break;
@@ -90,50 +91,78 @@ public class ListaEncadeada {
 				aux2 = aux2.getProx();
 			}
 			No novo = new No(value, aux2);
-			
+
 			while (aux.getProx() != aux2) {
 				aux = aux.getProx();
 			}
-			
+
 			aux.setProx(novo);
 			qtd++;
-			
-		}else{
+
+		} else {
 			System.out.println("Posição inválida!");
 		}
 	}
-	
-	public Object removeFirst(){
+
+	public Object removePos(int pos) {
+		if (checkPos(pos)) {
+			No aux = head.getProx();
+			No aux2 = head;
+			Object retorno = null;
+
+			for (int i = 0; i < qtd; i++) {
+				if (i == pos) {
+					retorno = aux.getValue();
+					break;
+				}
+				aux = aux.getProx();
+			}
+
+			while (aux2.getProx() != aux) {
+				aux2 = aux2.getProx();
+			}
+			aux2.setProx(aux.getProx());
+			qtd--;
+
+			return retorno;
+
+		} else {
+			System.out.println("Posição Inválida");
+			return null;
+		}
+	}
+
+	public Object removeFirst() {
 		if (!isEmpty()) {
 			Object value = head.getProx().getValue();
 			head.setProx(head.getProx().getProx());
 			qtd--;
 			return value;
-		}else{
+		} else {
 			System.out.println("Lista Vazia");
 			return null;
 		}
 	}
-	
-	public Object removeLast(){
+
+	public Object removeLast() {
 		if (!isEmpty()) {
 			Object value;
 			No aux = head.getProx();
 			No anterior = head;
-			
-			while(aux.getProx() != tail){
+
+			while (aux.getProx() != tail) {
 				anterior = aux;
 				aux = aux.getProx();
 			}
-			
+
 			value = aux.getValue();
-			
+
 			anterior.setProx(aux.getProx());
-			
+
 			qtd--;
-		
+
 			return value;
-		}else{
+		} else {
 			System.out.println("Lista Vazia");
 			return null;
 		}
@@ -175,5 +204,4 @@ public class ListaEncadeada {
 		}
 
 	}
-
 }

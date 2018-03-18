@@ -7,8 +7,13 @@ public class UsaListaEncadeada {
 
 		lista.insertLast("B");
 		lista.insertLast("C");
-		lista.insertPos(2, "E");
-//		lista.insertBeforeNode(lista.searchNode("A"), "D");
+//		lista.removePos(2);
+
+
+//		lista.insertAfterNode(lista.searchNode("B"), "E");
+//		lista.insertBeforeNode(lista.searchNode("B"), "D");
+//		lista.removeLast();
+//		lista.removeFirst();
 		// lista.insertBeforeNode(lista.searchNode("D"), "E");
 //		lista.removeLast();
 //		lista.print();
