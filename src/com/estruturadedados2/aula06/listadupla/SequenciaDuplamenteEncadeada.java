@@ -42,27 +42,102 @@ public class SequenciaDuplamenteEncadeada extends ListaDuplaEncadeada {
 		}
 	}
 
-	public void inserirOrdenado(int value) {
+	public void insertSorted(int value) {
 
 		if (isEmpty()) {
 			insertFirst(value);
 		} else {
 			Dnode aux = firstNode();
-			Dnode ant = null;
 
-			while ((int) aux.getValue() < value) {
-				ant = aux;
+			for (int i = 0; i < size(); i++) {
+				if (value <= (int) aux.getValue()) {
+					Dnode novo = new Dnode(aux.getAnt(), value, aux);
+					aux.getAnt().setProx(novo);
+					aux.setAnt(novo);
+					setQtd(getQtd() + 1);
+					return;
+				}
 				aux = aux.getProx();
 			}
 
-			if (ant == null) {
-				insertFirst(value);
-			} else {
-				insertAfterNode(ant, value);
-			}
+			insertLast(value);
 
 		}
 
+	}
+
+	public void insertPos(int pos, Object value) {
+		if (checkPos(pos)) {
+
+			Dnode aux = firstNode();
+
+			for (int i = 0; i < size(); i++) {
+				if (i == pos) {
+					insertBeforeNode(aux, value);
+					return;
+				}
+				aux = aux.getProx();
+			}
+
+		} else {
+			System.out.println("Posição Inválida");
+		}
+	}
+
+	private boolean isCrescent(){
+		if (!isEmpty()) {
+			Dnode aux = firstNode();
+			
+			int valor = (int) aux.getValue();
+			aux = aux.getProx();
+			
+			while (aux != lastNode().getProx()) {
+				if (valor > (int) aux.getValue()) {
+					return false;
+				}
+				valor = (int) aux.getValue();
+				aux = aux.getProx();
+			}
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean isDecrescent(){
+		if (!isEmpty()) {
+			Dnode aux = firstNode();
+			
+			int valor = (int) aux.getValue();
+			aux = aux.getProx();
+			
+			while (aux != lastNode().getProx()) {
+				if (valor < (int) aux.getValue()) {
+					return false;
+				}
+				valor = (int) aux.getValue();
+				aux = aux.getProx();
+			}
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean isSorted(){
+		if (isCrescent() || isDecrescent()) {
+			if (isCrescent()) {
+				System.out.println("Crescente");
+			}else if(isDecrescent()){
+				System.out.println("Decrescente");
+			
+			}
+			return true;
+		}
+		System.out.println("Desordenado");
+		return false;
 	}
 
 	public Object removePos(int pos) {
