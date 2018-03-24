@@ -84,34 +84,35 @@ public class SequenciaDuplamenteEncadeada extends ListaDuplaEncadeada {
 		}
 	}
 
-	private boolean isCrescent(){
+	private boolean isCrescent() {
 		if (!isEmpty()) {
 			Dnode aux = firstNode();
-			
+
 			int valor = (int) aux.getValue();
 			aux = aux.getProx();
-			
+
 			while (aux != lastNode().getProx()) {
+
 				if (valor > (int) aux.getValue()) {
 					return false;
 				}
 				valor = (int) aux.getValue();
 				aux = aux.getProx();
 			}
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	private boolean isDecrescent(){
+
+	private boolean isDecrescent() {
 		if (!isEmpty()) {
 			Dnode aux = firstNode();
-			
+
 			int valor = (int) aux.getValue();
 			aux = aux.getProx();
-			
+
 			while (aux != lastNode().getProx()) {
 				if (valor < (int) aux.getValue()) {
 					return false;
@@ -119,20 +120,20 @@ public class SequenciaDuplamenteEncadeada extends ListaDuplaEncadeada {
 				valor = (int) aux.getValue();
 				aux = aux.getProx();
 			}
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	public boolean isSorted(){
+
+	public boolean isSorted() {
 		if (isCrescent() || isDecrescent()) {
 			if (isCrescent()) {
 				System.out.println("Crescente");
-			}else if(isDecrescent()){
+			} else if (isDecrescent()) {
 				System.out.println("Decrescente");
-			
+
 			}
 			return true;
 		}

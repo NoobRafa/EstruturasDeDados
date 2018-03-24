@@ -39,13 +39,19 @@ public class ListaEncadeada {
 
 	public void insertLast(Object value) {
 		No novo = new No(value, tail);
-
 		No aux = head.getProx();
 
-		while (aux.getProx() != tail) {
-			aux = aux.getProx();
+		if (aux.getValue() == null) {
+			head.setProx(novo);
+		} else {
+
+			while (aux.getProx() != tail) {
+				aux = aux.getProx();
+			}
+
+			aux.setProx(novo);
 		}
-		aux.setProx(novo);
+
 		qtd++;
 
 	}
