@@ -5,4 +5,4 @@ Disciplina de Estruturas de Dados 2 -@Rafael Vieira
 ->Pilha Encadeada (No)
 ->Lista Duplamente Encadeada (No)
 
-Atualização : 21 de março de 2018
+Atualização : 24 de março de 2018
