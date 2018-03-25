@@ -38,22 +38,25 @@ public class ListaEncadeada {
 	}
 
 	public void insertLast(Object value) {
-		No novo = new No(value, tail);
-		No aux = head.getProx();
 
-		if (aux.getValue() == null) {
-			head.setProx(novo);
+		if (isEmpty()) {
+			insertFirst(value);
 		} else {
-
-			while (aux.getProx() != tail) {
+			No novo = new No(value, tail);
+			No aux = head.getProx();
+			for (int i = 0; i < qtd - 1; i++) {
 				aux = aux.getProx();
 			}
 
 			aux.setProx(novo);
+			qtd++;
 		}
 
-		qtd++;
+	}
 
+	public void doubleInsert(Object value) {
+		insertFirst(value);
+		insertLast(value);
 	}
 
 	public void insertAfterNode(No no, Object value) {
@@ -200,10 +203,10 @@ public class ListaEncadeada {
 		if (!isEmpty()) {
 			No aux = head.getProx();
 
-		for (int i = 0; i < qtd; i++) {
-			System.out.print(aux.getValue() + " ");
-			aux = aux.getProx();
-		}
+			for (int i = 0; i < qtd; i++) {
+				System.out.print(aux.getValue() + " ");
+				aux = aux.getProx();
+			}
 			System.out.println();
 		} else {
 			System.out.println("Lista Vazia");

@@ -3,11 +3,13 @@ package com.estruturadedados2.aula05.listaencadeada;
 public class UsaListaEncadeada {
 	public static void main(String[] args) {
 		ListaEncadeada lista = new ListaEncadeada();
-
-
+		lista.insertFirst("A");
 		lista.insertLast("B");
+		lista.insertFirst("D");
+		lista.insertLast("E");
 		lista.insertLast("C");
 		lista.insertPos(0, "C");
+
 //		lista.removePos(2);
 
 
